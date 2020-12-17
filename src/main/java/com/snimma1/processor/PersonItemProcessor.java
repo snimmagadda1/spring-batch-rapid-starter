@@ -5,10 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 
 import com.snimma1.model.Person;
-/**
- * @author snimmagadda1
- * Item processor transformation data
- */
+/** @author snimmagadda1 Item processor transformation data */
 public class PersonItemProcessor implements ItemProcessor<Person, Person> {
 
   private static final Logger log = LoggerFactory.getLogger(PersonItemProcessor.class);

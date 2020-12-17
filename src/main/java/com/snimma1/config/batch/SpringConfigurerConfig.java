@@ -13,27 +13,25 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfigurerConfig {
 
+  /**
+   * Configure default batch datasource
+   *
+   * @param dataSource
+   * @return
+   */
+  @Bean
+  BatchConfigurer batchConfigurer(@Qualifier("springDataSource") DataSource dataSource) {
+    return new DefaultBatchConfigurer(dataSource);
+  }
 
-    /**
-     * Configure default batch datasource
-     *
-     * @param dataSource
-     * @return
-     */
-    @Bean
-    BatchConfigurer batchConfigurer(@Qualifier("springDataSource") DataSource dataSource) {
-        return new DefaultBatchConfigurer(dataSource);
-    }
-
-    /**
-     * Configure default task datasource
-     *
-     * @param dataSource
-     * @return
-     */
-    @Bean
-    TaskConfigurer taskConfigurer(@Qualifier("springDataSource") DataSource dataSource) {
-        return new DefaultTaskConfigurer(dataSource);
-    }
-
+  /**
+   * Configure default task datasource
+   *
+   * @param dataSource
+   * @return
+   */
+  @Bean
+  TaskConfigurer taskConfigurer(@Qualifier("springDataSource") DataSource dataSource) {
+    return new DefaultTaskConfigurer(dataSource);
+  }
 }

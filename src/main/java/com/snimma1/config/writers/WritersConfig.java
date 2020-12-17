@@ -14,7 +14,7 @@ import com.snimma1.model.Person;
 
 @Configuration
 @PropertySource("classpath:application.yaml")
-public class WritersConfing {
+public class WritersConfig {
   @Value("${export.file.csv}")
   private String csvFile;
 
@@ -24,13 +24,13 @@ public class WritersConfing {
   /** @return ItemWriter */
   @Bean
   public ItemWriter<Person> csvItemWriter() {
-    FlatFileItemWriter<Person> csvWriter = new FlatFileItemWriter<Person>();
+    FlatFileItemWriter<Person> csvWriter = new FlatFileItemWriter<>();
     csvWriter.setResource(new FileSystemResource(csvFile));
     csvWriter.setShouldDeleteIfExists(true);
 
-    DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<Person>();
+    DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<>();
     lineAgg.setDelimiter(",");
-    BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<Person>();
+    BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<>();
     extractor.setNames(new String[] {"firstName", "lastName"});
     lineAgg.setFieldExtractor(extractor);
     csvWriter.setLineAggregator(lineAgg);
@@ -40,13 +40,13 @@ public class WritersConfing {
   /** @return ItemWriter */
   @Bean
   public ItemWriter<Person> txtItemWriter() {
-    FlatFileItemWriter<Person> txtWriter = new FlatFileItemWriter<Person>();
+    FlatFileItemWriter<Person> txtWriter = new FlatFileItemWriter<>();
     txtWriter.setResource(new FileSystemResource(txtFile));
     txtWriter.setShouldDeleteIfExists(true);
 
-    DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<Person>();
+    DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<>();
     lineAgg.setDelimiter("##");
-    BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<Person>();
+    BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<>();
     extractor.setNames(new String[] {"firstName", "lastName"});
     lineAgg.setFieldExtractor(extractor);
     txtWriter.setLineAggregator(lineAgg);

@@ -1,7 +1,7 @@
 package com.snimma1.config.batch;
 
 import com.snimma1.config.readers.ReadersConfig;
-import com.snimma1.config.writers.WritersConfing;
+import com.snimma1.config.writers.WritersConfig;
 import com.snimma1.model.Person;
 import com.snimma1.processor.PersonItemProcessor;
 import org.springframework.batch.core.Job;
@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @author snimmagadda1
- * Configuration class for batch jobs and default datasource
- */
+/** @author snimmagadda1 Configuration class for batch jobs and default datasource */
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
@@ -30,7 +27,7 @@ public class BatchConfig {
   @Autowired private ReadersConfig readers;
 
   /** Holds all writers available for job */
-  @Autowired private WritersConfing writers;
+  @Autowired private WritersConfig writers;
 
   /**
    * Test
