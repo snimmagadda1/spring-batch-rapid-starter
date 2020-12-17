@@ -2,6 +2,9 @@
 
 #### A template for quickly building spring batch based jobs
 
+I've noticed an abundance of xml-based starters/examples but fewer class-based jobs. 
+This is a collection of patterns that I've found handy.
+
 ### Packages
 
 The starter is divided into the following packages:
