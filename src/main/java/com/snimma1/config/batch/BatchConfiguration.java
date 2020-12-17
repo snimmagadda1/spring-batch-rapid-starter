@@ -1,24 +1,21 @@
 package com.snimma1.config.batch;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.BatchConfigurer;
-import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 import com.snimma1.config.readers.ReadersConfig;
 import com.snimma1.config.writers.WritersConfing;
 import com.snimma1.model.Person;
 import com.snimma1.processor.PersonItemProcessor;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.*;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.task.configuration.DefaultTaskConfigurer;
+import org.springframework.cloud.task.configuration.TaskConfigurer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 /**
  * 
@@ -55,13 +52,23 @@ public class BatchConfiguration {
     private DataSource dsTest;
     
     /**
-     * Configure default datasource
+     * Configure default batch datasource
      * @param dataSource
      * @return
      */
     @Bean
-    BatchConfigurer configurer(DataSource dataSource){
+    BatchConfigurer batchConfigurer(DataSource dataSource){
       return new DefaultBatchConfigurer(dsTest);
+    }
+
+    /**
+     * Configure default task datasource
+     * @param dataSource
+     * @return
+     */
+    @Bean
+    TaskConfigurer taskConfigurer(DataSource dataSource){
+        return new DefaultTaskConfigurer(dsTest);
     }
 
     /**
