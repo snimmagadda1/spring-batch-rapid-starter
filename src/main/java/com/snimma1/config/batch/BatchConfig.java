@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** @author snimmagadda1 Configuration class for batch jobs and default datasource */
+/** @author snimmagadda1
+ * Configuration class for batch jobs
+ */
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
