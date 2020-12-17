@@ -26,6 +26,8 @@ Configuration classes for necessary batch components are scanned via Spring acco
 * `writers` contains configuration and custom writer instantiations
 * `batch` configures the overall batch processing job
 
+`com.snimma1.custom` contains custom reader/writer impls
+
 `com.snimma1.model` contains model classes
 
 `com.snimma1.processor` contains processor implementations
