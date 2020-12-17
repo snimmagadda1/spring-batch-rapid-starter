@@ -5,9 +5,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "spring.datasource")
+@ConfigurationProperties(prefix = "app.datasource")
 @Data
-public class SpringDatasourceConfigurationProperties {
+public class AppDatasourceConfigurationProperties {
     private String driverClassName;
     private String url;
     private String username;
