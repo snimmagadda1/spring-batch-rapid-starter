@@ -19,7 +19,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  *
  */
 @Configuration
-@PropertySource("classpath:XYZ")
+@PropertySource("classpath:application.yaml")
 public class DatasourceConfig 
 {
 	@Value("${db.jdbc.driver}")

@@ -13,7 +13,7 @@ import org.springframework.core.io.FileSystemResource;
 import com.snimma1.model.Person;
 
 @Configuration
-@PropertySource("classpath:XYZ")
+@PropertySource("classpath:application.yaml")
 public class WritersConfing 
 {
 	@Value("${export.file.csv}")

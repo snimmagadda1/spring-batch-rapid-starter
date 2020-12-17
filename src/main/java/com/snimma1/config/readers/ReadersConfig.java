@@ -13,8 +13,8 @@ import org.springframework.core.io.ClassPathResource;
 import com.snimma1.model.Person;
 
 @Configuration
-@PropertySource("classpath:XYZ")
-public class ReadersConfig 
+@PropertySource("classpath:application.yaml")
+public class ReadersConfig
 {
 	@Value("${import.file.csv}")
 	private String csvFile;
