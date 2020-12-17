@@ -1,0 +1,21 @@
+
+
+
+import:
+  file:
+    csv: "import/persons.csv"
+    txt: "import/persons.txt"
+
+export:
+  file:
+    csv: "target/export/persons.csv"
+    txt: "target/export/persons.txt"
+
+db:
+  jdbc:
+    driver: com.mysql.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/batchjobs"
+    user: "root"
+    pass: "password"
+  mem:
+    script: "schema-base.sql"

@@ -15,7 +15,7 @@ The starter is divided into the following packages:
 
 #### How does the starter work?
 
-`com.snimma1.app.Application` is the main class of the application, as in a normal spring boot app.
+`com.snimma1.Application` is the main class of the application, as in a normal spring boot app.
 
 Configuration classes for necessary batch components are scanned via Spring accordingly/
 
