@@ -14,50 +14,42 @@ import com.snimma1.model.Person;
 
 @Configuration
 @PropertySource("classpath:application.yaml")
-public class WritersConfing 
-{
-	@Value("${export.file.csv}")
-	private String csvFile;
-	
-	@Value("${export.file.txt}")
-	private String txtFile;
+public class WritersConfing {
+  @Value("${export.file.csv}")
+  private String csvFile;
 
-	    /**
-	     * @return ItemWriter
-	     */
-	    @Bean
-	    public ItemWriter<Person> csvItemWriter()
-	    {
-	    	FlatFileItemWriter<Person> csvWriter = new FlatFileItemWriter<Person>();
-	    	csvWriter.setResource(new FileSystemResource(csvFile));
-	    	csvWriter.setShouldDeleteIfExists(true);
-	    	
-	    	DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<Person>();
-	    	lineAgg.setDelimiter(",");
-	    	BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<Person>();
-	    	extractor.setNames(new String[] { "firstName", "lastName" });
-	    	lineAgg.setFieldExtractor(extractor);
-	    	csvWriter.setLineAggregator(lineAgg);
-	    	return csvWriter;
-	    }
-	    
-	    /**
-	     * @return ItemWriter
-	     */
-	    @Bean
-	    public ItemWriter<Person> txtItemWriter()
-	    {
-	    	FlatFileItemWriter<Person> txtWriter = new FlatFileItemWriter<Person>();
-	    	txtWriter.setResource(new FileSystemResource(txtFile));
-	    	txtWriter.setShouldDeleteIfExists(true);
-	    	
-	    	DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<Person>();
-	    	lineAgg.setDelimiter("##");
-	    	BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<Person>();
-	    	extractor.setNames(new String[] { "firstName", "lastName" });
-	    	lineAgg.setFieldExtractor(extractor);
-	    	txtWriter.setLineAggregator(lineAgg);
-	    	return txtWriter;
-	    }
-	    
+  @Value("${export.file.txt}")
+  private String txtFile;
+
+  /** @return ItemWriter */
+  @Bean
+  public ItemWriter<Person> csvItemWriter() {
+    FlatFileItemWriter<Person> csvWriter = new FlatFileItemWriter<Person>();
+    csvWriter.setResource(new FileSystemResource(csvFile));
+    csvWriter.setShouldDeleteIfExists(true);
+
+    DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<Person>();
+    lineAgg.setDelimiter(",");
+    BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<Person>();
+    extractor.setNames(new String[] {"firstName", "lastName"});
+    lineAgg.setFieldExtractor(extractor);
+    csvWriter.setLineAggregator(lineAgg);
+    return csvWriter;
+  }
+
+  /** @return ItemWriter */
+  @Bean
+  public ItemWriter<Person> txtItemWriter() {
+    FlatFileItemWriter<Person> txtWriter = new FlatFileItemWriter<Person>();
+    txtWriter.setResource(new FileSystemResource(txtFile));
+    txtWriter.setShouldDeleteIfExists(true);
+
+    DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<Person>();
+    lineAgg.setDelimiter("##");
+    BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<Person>();
+    extractor.setNames(new String[] {"firstName", "lastName"});
+    lineAgg.setFieldExtractor(extractor);
+    txtWriter.setLineAggregator(lineAgg);
+    return txtWriter;
+  }
 }
