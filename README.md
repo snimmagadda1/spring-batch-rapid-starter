@@ -4,14 +4,11 @@
   <a href="LICENSE.md" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
-  <a href="https://twitter.com/funsaized" target="_blank">
-    <img alt="Twitter: funsaized" src="https://img.shields.io/twitter/follow/funsaized.svg?style=social" />
-  </a>
 </p>
 
 > A template for quickly building highly configurable spring batch based jobs
 
-### 🏠 [Homepage](s11a.com)
+### 🏠 [TODO](s11a.com)
 
 ## Usage
 
@@ -60,7 +57,6 @@ mvn test
 👤 **Sai Nimmagadda**
 
 * Website: s11a.com
-* Twitter: [@funsaized](https://twitter.com/funsaized)
 * Github: [@snimmagadda1](https://github.com/snimmagadda1)
 
 ## 🤝 Contributing
