@@ -1,5 +1,6 @@
 package com.snimma1.config.readers;
 
+import com.snimma1.model.Person;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
@@ -9,8 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
-
-import com.snimma1.model.Person;
 
 @Configuration
 @PropertySource("classpath:application.yaml")

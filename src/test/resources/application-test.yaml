@@ -6,13 +6,13 @@ spring:
     password: "pass"
     schema: schema-base.sql
 
-#app:
-#  datasource:
-#    driver-class-name: org.hsqldb.jdbc.JDBCDriver
-#    url: "jdbc:hsqldb:mem:appdb;DB_CLOSE_DELAY=-1"
-#    username: "user"
-#    password: "pass"
-#    schema: schema-base.sql
+app:
+  datasource:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    url: "jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1"
+    username: "user"
+    password: "pass"
+    schema: schema-base.sql
 
 
 import:

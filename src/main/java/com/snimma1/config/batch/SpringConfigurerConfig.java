@@ -2,6 +2,7 @@ package com.snimma1.config.batch;
 
 import org.springframework.batch.core.configuration.annotation.BatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;
+import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.task.configuration.DefaultTaskConfigurer;
 import org.springframework.cloud.task.configuration.TaskConfigurer;
@@ -33,5 +34,10 @@ public class SpringConfigurerConfig {
     @Bean
     TaskConfigurer taskConfigurer(@Qualifier("springDataSource") DataSource dataSource) {
         return new DefaultTaskConfigurer(dataSource);
+    }
+
+    @Bean
+    public JobLauncherTestUtils jobLauncherTestUtils() {
+        return new JobLauncherTestUtils();
     }
 }
