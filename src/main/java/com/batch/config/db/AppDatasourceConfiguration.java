@@ -1,4 +1,4 @@
-package com.snimma1.config.db;
+package com.batch.config.db;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

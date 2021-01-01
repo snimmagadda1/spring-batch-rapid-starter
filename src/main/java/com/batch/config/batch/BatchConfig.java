@@ -1,9 +1,9 @@
-package com.snimma1.config.batch;
+package com.batch.config.batch;
 
-import com.snimma1.config.readers.ReadersConfig;
-import com.snimma1.config.writers.WritersConfig;
-import com.snimma1.model.Person;
-import com.snimma1.processor.PersonItemProcessor;
+import com.batch.config.readers.ReadersConfig;
+import com.batch.config.writers.WritersConfig;
+import com.batch.model.Person;
+import com.batch.processor.PersonItemProcessor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;

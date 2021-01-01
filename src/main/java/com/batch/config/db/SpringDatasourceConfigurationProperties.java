@@ -1,4 +1,4 @@
-package com.snimma1.config.db;
+package com.batch.config.db;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,4 +1,4 @@
-package com.snimma1.model;
+package com.batch.model;
 
 /** @author snimmagadda1 */
 public class Person {

@@ -1,6 +1,6 @@
-package com.snimma1.config.writers;
+package com.batch.config.writers;
 
-import com.snimma1.model.Person;
+import com.batch.model.Person;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;

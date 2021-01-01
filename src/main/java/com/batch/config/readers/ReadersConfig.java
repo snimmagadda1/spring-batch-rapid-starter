@@ -1,6 +1,6 @@
-package com.snimma1.config.readers;
+package com.batch.config.readers;
 
-import com.snimma1.model.Person;
+import com.batch.model.Person;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;

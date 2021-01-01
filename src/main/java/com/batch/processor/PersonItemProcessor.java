@@ -1,6 +1,6 @@
-package com.snimma1.processor;
+package com.batch.processor;
 
-import com.snimma1.model.Person;
+import com.batch.model.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;

@@ -1,4 +1,4 @@
-package com.snimma1.config.batch;
+package com.batch.config.batch;
 
 import org.springframework.batch.core.configuration.annotation.BatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;

@@ -1,6 +1,6 @@
-package com.snimma1.config;
+package com.batch.config;
 
-import com.snimma1.Application;
+import com.batch.Application;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
