@@ -8,21 +8,18 @@
 
 > A template for quickly building highly configurable spring batch based jobs
 
-### 🏠 [TODO](s11a.com)
+### 🏠 [Description](https://s11a.com/a-spring-batch-quickstarter)
 
 ## Usage
 
-I've noticed an abundance of xml-based starters/examples but fewer class-based jobs. 
+I've noticed an abundance of xml-based starters/examples but fewer class-based jobs.
 This is an opinionated collection of patterns that I've found handy.
-
 
 ### Packages
 
 The starter is divided into the following packages:
 
-
 ![packages](./packages.png)
-
 
 ### How does the starter work?
 
@@ -32,10 +29,10 @@ Configuration classes for necessary batch components are scanned via Spring acco
 
 `com.batch.config.*` contains classes that configure jobs,steps and tasks:
 
-* `db` contains datasource configuration. This could be a JDBC connection, MongoDB, etc
-* `readers` contains configuration and custom reader instantiations 
-* `writers` contains configuration and custom writer instantiations
-* `batch` configures the overall batch processing job
+-   `db` contains datasource configuration. This could be a JDBC connection, MongoDB, etc
+-   `readers` contains configuration and custom reader instantiations
+-   `writers` contains configuration and custom writer instantiations
+-   `batch` configures the overall batch processing job
 
 `com.batch.custom` contains custom reader/writer impls
 
@@ -44,7 +41,6 @@ Configuration classes for necessary batch components are scanned via Spring acco
 `com.batch.processor` contains processor implementations
 
 `com.batch.notification` contains custom listeners
-
 
 ## Run tests
 
@@ -58,12 +54,12 @@ mvn test
 
 👤 **Sai Nimmagadda**
 
-* Website: s11a.com
-* Github: [@snimmagadda1](https://github.com/snimmagadda1)
+-   Website: s11a.com
+-   Github: [@snimmagadda1](https://github.com/snimmagadda1)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/snimmagadda1/spring-batch-rapid-starter/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/snimmagadda1/spring-batch-rapid-starter/issues).
 
 ## Show your support
 
@@ -74,5 +70,6 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [Sai Nimmagadda](https://github.com/snimmagadda1).<br />
 This project is [MIT](LICENSE.md) licensed.
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
