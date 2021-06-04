@@ -4,12 +4,16 @@ import com.batch.config.readers.ReadersConfig;
 import com.batch.config.writers.WritersConfig;
 import com.batch.model.Person;
 import com.batch.processor.PersonItemProcessor;
+
+import org.hibernate.InvalidMappingException;
+import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.task.configuration.EnableTask;
 import org.springframework.context.annotation.Bean;
@@ -47,11 +51,15 @@ public class BatchConfig {
      * @return Job - configured job
      */
     @Bean
-    public Job importUserJob() {
+    public Job coolBatchJob() {
         return jobBuilderFactory
-                .get("importUserJob")
-                .incrementer(new RunIdIncrementer())
-                .flow(step1())
+                .get("coolBatchJob")
+                .start(stepA())
+                .on("FAILED")
+                    .to(failure())
+                .from(stepA())
+                .on("COMPLETED")
+                    .to(flow1())
                 .end()
                 .build();
     }
@@ -63,11 +71,48 @@ public class BatchConfig {
     @Bean
     public Step step1() {
         return stepBuilderFactory
-                .get("step1")
+                .get("step1Real")
                 .<Person, Person>chunk(10)
                 .reader(readers.readerCsv())
                 .processor(processor())
                 .writer(writers.csvItemWriter())
                 .build();
     }
+
+    @Bean
+    public Step flow1() {
+        return stepBuilderFactory.get("step1").tasklet((contribution, chunkContext) -> {
+            System.out.println("Running the success flow!!");
+            return RepeatStatus.FINISHED;
+        }).build();
+    }
+
+    @Bean
+    public Step failure() {
+        return stepBuilderFactory.get("flow2").tasklet((contribution, chunkContext) -> {
+            System.out.println("Running the failure flow!!");
+            return RepeatStatus.FINISHED;
+        }).build();
+    }
+
+    @Bean
+    public Step stepA() {
+        return stepBuilderFactory.get("stepA").tasklet((contribution, chunkContext) -> {
+            System.out.println("Woo");
+            return RepeatStatus.FINISHED;
+        }).build();
+    }
+ 
+
+    @Bean
+    public Step stepB() {
+        return stepBuilderFactory.get("stepB").tasklet((contribution, chunkContext) -> {
+            System.out.println("Hoo!");
+            if (true) {
+                throw new InvalidMappingException("Failed", "test", "/test");
+            }
+            return RepeatStatus.FINISHED;
+        }).build();
+    }
+ 
 }
