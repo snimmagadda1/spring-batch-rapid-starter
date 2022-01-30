@@ -14,41 +14,44 @@ import org.springframework.core.io.FileSystemResource;
 @Configuration
 @PropertySource("classpath:application.yaml")
 public class WritersConfig {
-    @Value("${export.file.csv}")
-    private String csvFile;
 
-    @Value("${export.file.txt}")
-    private String txtFile;
+  // <The config strings and writers are for demo purposes. Remove for your job
 
-    /** @return ItemWriter */
-    @Bean
-    public ItemWriter<Person> csvItemWriter() {
-        FlatFileItemWriter<Person> csvWriter = new FlatFileItemWriter<>();
-        csvWriter.setResource(new FileSystemResource(csvFile));
-        csvWriter.setShouldDeleteIfExists(true);
+  @Value("${export.file.csv}")
+  private String csvFile;
 
-        DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<>();
-        lineAgg.setDelimiter(",");
-        BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<>();
-        extractor.setNames(new String[] {"firstName", "lastName"});
-        lineAgg.setFieldExtractor(extractor);
-        csvWriter.setLineAggregator(lineAgg);
-        return csvWriter;
-    }
+  @Value("${export.file.txt}")
+  private String txtFile;
 
-    /** @return ItemWriter */
-    @Bean
-    public ItemWriter<Person> txtItemWriter() {
-        FlatFileItemWriter<Person> txtWriter = new FlatFileItemWriter<>();
-        txtWriter.setResource(new FileSystemResource(txtFile));
-        txtWriter.setShouldDeleteIfExists(true);
+  /** @return ItemWriter */
+  @Bean
+  public ItemWriter<Person> csvItemWriter() {
+    FlatFileItemWriter<Person> csvWriter = new FlatFileItemWriter<>();
+    csvWriter.setResource(new FileSystemResource(csvFile));
+    csvWriter.setShouldDeleteIfExists(true);
 
-        DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<>();
-        lineAgg.setDelimiter("##");
-        BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<>();
-        extractor.setNames(new String[] {"firstName", "lastName"});
-        lineAgg.setFieldExtractor(extractor);
-        txtWriter.setLineAggregator(lineAgg);
-        return txtWriter;
-    }
+    DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<>();
+    lineAgg.setDelimiter(",");
+    BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<>();
+    extractor.setNames(new String[] {"firstName", "lastName"});
+    lineAgg.setFieldExtractor(extractor);
+    csvWriter.setLineAggregator(lineAgg);
+    return csvWriter;
+  }
+
+  /** @return ItemWriter */
+  @Bean
+  public ItemWriter<Person> txtItemWriter() {
+    FlatFileItemWriter<Person> txtWriter = new FlatFileItemWriter<>();
+    txtWriter.setResource(new FileSystemResource(txtFile));
+    txtWriter.setShouldDeleteIfExists(true);
+
+    DelimitedLineAggregator<Person> lineAgg = new DelimitedLineAggregator<>();
+    lineAgg.setDelimiter("##");
+    BeanWrapperFieldExtractor<Person> extractor = new BeanWrapperFieldExtractor<>();
+    extractor.setNames(new String[] {"firstName", "lastName"});
+    lineAgg.setFieldExtractor(extractor);
+    txtWriter.setLineAggregator(lineAgg);
+    return txtWriter;
+  }
 }

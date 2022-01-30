@@ -21,53 +21,53 @@ import org.springframework.context.annotation.Configuration;
 @EnableTask
 public class BatchConfig {
 
-    @Autowired public JobBuilderFactory jobBuilderFactory;
+  @Autowired public JobBuilderFactory jobBuilderFactory;
 
-    @Autowired public StepBuilderFactory stepBuilderFactory;
+  @Autowired public StepBuilderFactory stepBuilderFactory;
 
-    /** Holds all readers available for job */
-    @Autowired private ReadersConfig readers;
+  /** Holds all readers available for job */
+  @Autowired private ReadersConfig readers;
 
-    /** Holds all writers available for job */
-    @Autowired private WritersConfig writers;
+  /** Holds all writers available for job */
+  @Autowired private WritersConfig writers;
 
-    /**
-     * Test
-     *
-     * @return PersonItemProcessor Logic for job
-     */
-    @Bean
-    public PersonItemProcessor processor() {
-        return new PersonItemProcessor();
-    }
+  /**
+   * Test
+   *
+   * @return PersonItemProcessor Logic for job
+   */
+  @Bean
+  public PersonItemProcessor processor() {
+    return new PersonItemProcessor();
+  }
 
-    /**
-     * Job pipeline
-     *
-     * @return Job - configured job
-     */
-    @Bean
-    public Job importUserJob() {
-        return jobBuilderFactory
-                .get("importUserJob")
-                .incrementer(new RunIdIncrementer())
-                .flow(step1())
-                .end()
-                .build();
-    }
-    /**
-     * Job Step
-     *
-     * @return Step current configured step
-     */
-    @Bean
-    public Step step1() {
-        return stepBuilderFactory
-                .get("step1")
-                .<Person, Person>chunk(10)
-                .reader(readers.readerCsv())
-                .processor(processor())
-                .writer(writers.csvItemWriter())
-                .build();
-    }
+  /**
+   * Job pipeline
+   *
+   * @return Job - configured job
+   */
+  @Bean
+  public Job importUserJob() {
+    return jobBuilderFactory
+        .get("importUserJob")
+        .incrementer(new RunIdIncrementer())
+        .flow(step1())
+        .end()
+        .build();
+  }
+  /**
+   * Job Step <This is for DEMO PURPOSES. Remove for your job>
+   *
+   * @return Step current configured step
+   */
+  @Bean
+  public Step step1() {
+    return stepBuilderFactory
+        .get("step1")
+        .<Person, Person>chunk(10)
+        .reader(readers.readerCsv())
+        .processor(processor())
+        .writer(writers.csvItemWriter())
+        .build();
+  }
 }

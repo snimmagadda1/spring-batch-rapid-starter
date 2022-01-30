@@ -14,60 +14,63 @@ import org.springframework.core.io.ClassPathResource;
 @Configuration
 @PropertySource("classpath:application.yaml")
 public class ReadersConfig {
-    @Value("${import.file.csv}")
-    private String csvFile;
 
-    @Value("${import.file.txt}")
-    private String txtFile;
+  // <The config strings and readers are for demo purposes. Remove for your job
 
-    /** @return FlatFileItemReader Configured reader */
-    @Bean
-    public FlatFileItemReader<Person> readerTxt() {
-        FlatFileItemReader<Person> readerPattern = new FlatFileItemReader<Person>();
-        readerPattern.setResource(new ClassPathResource(txtFile));
-        readerPattern.setLineMapper(
-                new DefaultLineMapper<Person>() {
-                    {
-                        setLineTokenizer(
-                                new DelimitedLineTokenizer() {
-                                    {
-                                        setDelimiter("##");
-                                        setNames(new String[] {"firstName", "lastName"});
-                                    }
-                                });
-                        setFieldSetMapper(
-                                new BeanWrapperFieldSetMapper<Person>() {
-                                    {
-                                        setTargetType(Person.class);
-                                    }
-                                });
-                    }
+  @Value("${import.file.csv}")
+  private String csvFile;
+
+  @Value("${import.file.txt}")
+  private String txtFile;
+
+  /** @return FlatFileItemReader Configured reader */
+  @Bean
+  public FlatFileItemReader<Person> readerTxt() {
+    FlatFileItemReader<Person> readerPattern = new FlatFileItemReader<Person>();
+    readerPattern.setResource(new ClassPathResource(txtFile));
+    readerPattern.setLineMapper(
+        new DefaultLineMapper<Person>() {
+          {
+            setLineTokenizer(
+                new DelimitedLineTokenizer() {
+                  {
+                    setDelimiter("##");
+                    setNames(new String[] {"firstName", "lastName"});
+                  }
                 });
-        return readerPattern;
-    }
-
-    /** @return FlatFileItemReader Configured reader */
-    @Bean
-    public FlatFileItemReader<Person> readerCsv() {
-        FlatFileItemReader<Person> reader = new FlatFileItemReader<Person>();
-        reader.setResource(new ClassPathResource(csvFile));
-        reader.setLineMapper(
-                new DefaultLineMapper<Person>() {
-                    {
-                        setLineTokenizer(
-                                new DelimitedLineTokenizer() {
-                                    {
-                                        setNames(new String[] {"firstName", "lastName"});
-                                    }
-                                });
-                        setFieldSetMapper(
-                                new BeanWrapperFieldSetMapper<Person>() {
-                                    {
-                                        setTargetType(Person.class);
-                                    }
-                                });
-                    }
+            setFieldSetMapper(
+                new BeanWrapperFieldSetMapper<Person>() {
+                  {
+                    setTargetType(Person.class);
+                  }
                 });
-        return reader;
-    }
+          }
+        });
+    return readerPattern;
+  }
+
+  /** @return FlatFileItemReader Configured reader */
+  @Bean
+  public FlatFileItemReader<Person> readerCsv() {
+    FlatFileItemReader<Person> reader = new FlatFileItemReader<Person>();
+    reader.setResource(new ClassPathResource(csvFile));
+    reader.setLineMapper(
+        new DefaultLineMapper<Person>() {
+          {
+            setLineTokenizer(
+                new DelimitedLineTokenizer() {
+                  {
+                    setNames(new String[] {"firstName", "lastName"});
+                  }
+                });
+            setFieldSetMapper(
+                new BeanWrapperFieldSetMapper<Person>() {
+                  {
+                    setTargetType(Person.class);
+                  }
+                });
+          }
+        });
+    return reader;
+  }
 }
